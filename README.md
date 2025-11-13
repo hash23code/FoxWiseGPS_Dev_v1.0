@@ -16,17 +16,27 @@ https://hash23code.github.io/FoxWiseGPS_Dev_v1.0/
 
 **Aucune installation requise** - Utilisez-la directement en ligne! 🚀
 
-### 📦 Activation de GitHub Pages
+### 📦 Activation de GitHub Pages (2 méthodes)
 
-Pour activer le déploiement automatique:
+#### Méthode 1: Via la Branche Claude (Recommandé)
 
-1. Allez dans les **Settings** de votre repo GitHub
-2. Dans le menu latéral, cliquez sur **Pages**
-3. Sous "Build and deployment":
-   - Source: Sélectionnez **GitHub Actions**
-4. Le workflow se déclenchera automatiquement!
+1. **Allez sur GitHub:** `https://github.com/hash23code/FoxWiseGPS_Dev_v1.0`
+2. **Dans Settings > Pages:**
+   - Source: Sélectionnez **Deploy from a branch**
+   - Branch: Sélectionnez **claude/gps-app-advanced-graphics-011CV5Wo1Nv28TgasTXHMR8v**
+   - Folder: `/ (root)`
+   - Cliquez **Save**
+3. **Attendez 1-2 minutes** - L'app sera en ligne! ✅
 
-L'application sera déployée automatiquement à chaque push sur la branche principale.
+#### Méthode 2: Créer une Branche Main
+
+1. Sur GitHub, allez dans l'onglet **Code**
+2. Cliquez sur le sélecteur de branche (où il est écrit la branche actuelle)
+3. Tapez "main" et créez la nouvelle branche à partir de claude/gps...
+4. Allez dans **Settings > Pages**
+5. Sélectionnez **Deploy from a branch** → **main** → **Save**
+
+L'application sera accessible à l'URL ci-dessus une fois le déploiement terminé!
 
 ## ✨ Fonctionnalités
 
