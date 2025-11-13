@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoxWiseGPS - Navigation Avancée</title>
+
+    <!-- Mapbox GL JS -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+
+    <!-- Mapbox GL Directions Plugin -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.css" type="text/css">
+
+    <!-- Chart.js for Statistics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <svg width="30" height="30" viewBox="0 0 30 30">
+                <circle cx="15" cy="15" r="12" fill="#4A90E2" stroke="#fff" stroke-width="2"/>
+                <path d="M15 8 L15 15 L20 18" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+            </svg>
+            <h1>FoxWiseGPS</h1>
+        </div>
+        <div class="header-stats">
+            <div class="stat-item">
+                <span class="stat-label">Vitesse</span>
+                <span class="stat-value" id="speed">0 km/h</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Distance</span>
+                <span class="stat-value" id="distance">0 km</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Altitude</span>
+                <span class="stat-value" id="altitude">0 m</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar Control Panel -->
+        <aside class="sidebar">
+            <div class="panel">
+                <h2>🎮 Contrôles</h2>
+
+                <!-- Location Controls -->
+                <div class="control-group">
+                    <button id="locateBtn" class="btn btn-primary">
+                        📍 Ma Position
+                    </button>
+                    <button id="trackingBtn" class="btn btn-secondary">
+                        🎯 Suivi en Temps Réel
+                    </button>
+                </div>
+
+                <!-- Map Style Selector -->
+                <div class="control-group">
+                    <h3>🗺️ Style de Carte</h3>
+                    <select id="mapStyle" class="select-box">
+                        <option value="streets-v12">Rues</option>
+                        <option value="satellite-streets-v12">Satellite</option>
+                        <option value="outdoors-v12">Extérieur</option>
+                        <option value="dark-v11">Sombre</option>
+                        <option value="light-v11">Clair</option>
+                        <option value="navigation-day-v1">Navigation</option>
+                    </select>
+                </div>
+
+                <!-- 3D Controls -->
+                <div class="control-group">
+                    <h3>🏔️ Vue 3D</h3>
+                    <button id="toggle3D" class="btn btn-accent">
+                        Activer 3D/Terrain
+                    </button>
+                    <div class="slider-group">
+                        <label>Inclinaison: <span id="pitchValue">0</span>°</label>
+                        <input type="range" id="pitchSlider" min="0" max="85" value="0" class="slider">
+                    </div>
+                    <div class="slider-group">
+                        <label>Rotation: <span id="bearingValue">0</span>°</label>
+                        <input type="range" id="bearingSlider" min="0" max="360" value="0" class="slider">
+                    </div>
+                </div>
+
+                <!-- Advanced Features -->
+                <div class="control-group">
+                    <h3>✨ Fonctionnalités</h3>
+                    <button id="routingBtn" class="btn btn-secondary">
+                        🚗 Navigation/Itinéraire
+                    </button>
+                    <button id="heatmapBtn" class="btn btn-secondary">
+                        🔥 Heatmap (Activité)
+                    </button>
+                    <button id="clusterBtn" class="btn btn-secondary">
+                        📌 Points d'Intérêt
+                    </button>
+                    <button id="measureBtn" class="btn btn-secondary">
+                        📏 Mesurer Distance
+                    </button>
+                </div>
+
+                <!-- Tracking History -->
+                <div class="control-group">
+                    <h3>📊 Historique</h3>
+                    <button id="startTrackBtn" class="btn btn-success">
+                        ▶️ Démarrer Enregistrement
+                    </button>
+                    <button id="stopTrackBtn" class="btn btn-danger" disabled>
+                        ⏸️ Arrêter
+                    </button>
+                    <button id="clearTrackBtn" class="btn btn-warning">
+                        🗑️ Effacer Trajet
+                    </button>
+                    <div class="track-info">
+                        <p>Points enregistrés: <span id="trackPoints">0</span></p>
+                        <p>Durée: <span id="trackDuration">00:00:00</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics Panel -->
+            <div class="panel stats-panel">
+                <h2>📈 Statistiques</h2>
+                <canvas id="statsChart"></canvas>
+                <div class="stats-summary">
+                    <div class="summary-item">
+                        <span>Vitesse Max:</span>
+                        <strong id="maxSpeed">0 km/h</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span>Distance Totale:</span>
+                        <strong id="totalDistance">0 km</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span>Temps Actif:</span>
+                        <strong id="activeTime">0 min</strong>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Map Container -->
+        <main class="map-container">
+            <div id="map"></div>
+
+            <!-- Floating Info Panel -->
+            <div class="info-panel" id="infoPanel">
+                <button class="close-btn" id="closeInfo">×</button>
+                <h3 id="infoTitle">Information</h3>
+                <div id="infoContent"></div>
+            </div>
+
+            <!-- Coordinates Display -->
+            <div class="coordinates-display">
+                <span id="coordinates">Lat: -, Lng: -</span>
+            </div>
+
+            <!-- Loading Overlay -->
+            <div class="loading-overlay" id="loadingOverlay">
+                <div class="spinner"></div>
+                <p>Chargement de la carte...</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- API Key Modal -->
+    <div class="modal" id="apiKeyModal">
+        <div class="modal-content">
+            <h2>🔑 Configuration Mapbox</h2>
+            <p>Pour utiliser FoxWiseGPS, vous avez besoin d'une clé API Mapbox (gratuite).</p>
+            <ol>
+                <li>Visitez <a href="https://account.mapbox.com/auth/signup/" target="_blank">mapbox.com</a></li>
+                <li>Créez un compte gratuit</li>
+                <li>Copiez votre "Access Token"</li>
+                <li>Collez-le ci-dessous:</li>
+            </ol>
+            <input type="text" id="apiKeyInput" class="input-field" placeholder="pk.eyJ1...">
+            <button id="saveApiKey" class="btn btn-primary">💾 Sauvegarder</button>
+            <p class="note">La clé sera stockée localement dans votre navigateur.</p>
+        </div>
+    </div>
+
+    <!-- Custom Script -->
+    <script src="app.js"></script>
+</body>
+</html>

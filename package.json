@@ -1,0 +1,24 @@
+{
+  "name": "foxwisegps",
+  "version": "1.0.0",
+  "description": "Advanced GPS application with real-time tracking, 3D maps, and data visualization",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000"
+  },
+  "keywords": [
+    "gps",
+    "mapbox",
+    "tracking",
+    "navigation",
+    "maps",
+    "geolocation"
+  ],
+  "author": "FoxWise",
+  "license": "MIT",
+  "dependencies": {
+    "mapbox-gl": "^3.0.0",
+    "chart.js": "^4.4.0"
+  }
+}
