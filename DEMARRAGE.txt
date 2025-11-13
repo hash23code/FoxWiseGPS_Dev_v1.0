@@ -1,0 +1,106 @@
+╔════════════════════════════════════════════════════════════════╗
+║                  🦊 FoxWiseGPS - DÉMARRAGE RAPIDE              ║
+╚════════════════════════════════════════════════════════════════╝
+
+📦 OPTION 1 : LANCEMENT EN 1 CLIC (Le plus simple!)
+═══════════════════════════════════════════════════════════════
+
+Windows:
+  → Double-cliquez sur:  start.bat
+
+Mac/Linux:
+  → Dans le terminal, tapez:
+    chmod +x start.sh
+    ./start.sh
+
+Puis ouvrez votre navigateur à:  http://localhost:8000
+
+
+📦 OPTION 2 : LANCEMENT MANUEL
+═══════════════════════════════════════════════════════════════
+
+1. Ouvrez un terminal/invite de commande dans ce dossier
+
+2. Tapez UNE de ces commandes:
+
+   Python 3:
+   python3 -m http.server 8000
+
+   Python 2:
+   python -m SimpleHTTPServer 8000
+
+   PHP:
+   php -S localhost:8000
+
+3. Ouvrez votre navigateur à:  http://localhost:8000
+
+
+🔑 CONFIGURATION PREMIÈRE UTILISATION
+═══════════════════════════════════════════════════════════════
+
+Au premier lancement, une fenêtre s'ouvrira pour demander votre clé API:
+
+1. Allez sur:  https://account.mapbox.com/auth/signup/
+   (Gratuit, pas de carte bancaire requise)
+
+2. Créez un compte
+
+3. Copiez votre "Access Token" (commence par pk.)
+
+4. Collez-le dans l'application
+
+5. Cliquez "Sauvegarder"
+
+✅ C'est tout! La clé sera sauvegardée dans votre navigateur.
+
+
+✨ FONCTIONNALITÉS À TESTER
+═══════════════════════════════════════════════════════════════
+
+📍 Géolocalisation
+  → Cliquez sur "Ma Position" pour vous localiser
+  → Activez "Suivi en Temps Réel" pour le tracking GPS
+
+🗺️ Styles de Carte
+  → Testez les 6 styles différents (Rues, Satellite, etc.)
+
+🏔️ Vue 3D
+  → Activez "3D/Terrain" pour voir les reliefs
+  → Ajustez l'inclinaison et la rotation
+
+🚗 Navigation
+  → Cliquez "Navigation/Itinéraire" pour calculer un trajet
+
+▶️ Enregistrement
+  → "Démarrer Enregistrement" pour sauvegarder votre parcours
+  → Voir les statistiques en temps réel
+
+🔥 Graphiques Avancés
+  → Heatmap d'activité
+  → Clustering de points d'intérêt
+  → Graphique de vitesse en temps réel
+
+📏 Mesure
+  → Outil pour mesurer des distances sur la carte
+
+
+🐛 PROBLÈMES?
+═══════════════════════════════════════════════════════════════
+
+Problème: "Python n'est pas reconnu"
+Solution: Installez Python depuis python.org/downloads
+
+Problème: "Port 8000 déjà utilisé"
+Solution: Changez le port à 8080 ou 3000 dans la commande
+
+Problème: "Géolocalisation ne marche pas"
+Solution: Autorisez l'accès à la localisation dans votre navigateur
+
+
+📧 BESOIN D'AIDE?
+═══════════════════════════════════════════════════════════════
+
+Lisez le README.md pour la documentation complète!
+
+
+Bon voyage avec FoxWiseGPS! 🗺️✨
