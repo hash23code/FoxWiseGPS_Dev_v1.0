@@ -5,6 +5,29 @@ Application GPS moderne avec graphiques avancés, suivi en temps réel, visualis
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
+## 🌐 Application En Ligne
+
+**🎉 Accédez à l'application directement depuis votre navigateur!**
+
+Une fois le déploiement GitHub Pages activé, l'application sera accessible à:
+```
+https://hash23code.github.io/FoxWiseGPS_Dev_v1.0/
+```
+
+**Aucune installation requise** - Utilisez-la directement en ligne! 🚀
+
+### 📦 Activation de GitHub Pages
+
+Pour activer le déploiement automatique:
+
+1. Allez dans les **Settings** de votre repo GitHub
+2. Dans le menu latéral, cliquez sur **Pages**
+3. Sous "Build and deployment":
+   - Source: Sélectionnez **GitHub Actions**
+4. Le workflow se déclenchera automatiquement!
+
+L'application sera déployée automatiquement à chaque push sur la branche principale.
+
 ## ✨ Fonctionnalités
 
 ### 🗺️ Cartographie Avancée
